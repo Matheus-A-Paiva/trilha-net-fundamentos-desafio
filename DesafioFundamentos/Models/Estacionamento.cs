@@ -13,34 +13,33 @@ namespace DesafioFundamentos.Models
             this.precoPorHora = precoPorHora;
         }
 
-        public void AdicionarVeiculo()
+        public bool AdicionarVeiculo(string veiculo)
         {
-            Console.WriteLine("Digite a placa do veículo para estacionar (Ex: XYZ-1234): ");
-            string veiculo = Convert.ToString(Console.ReadLine().ToUpper());
+
             if (veiculo.Length == 8)
             {
                 if (!veiculos.Contains(veiculo))
                 {
                     veiculos.Add(veiculo);
                     Console.WriteLine("Veículo adicionado!");
+                    return true;
                 }
                 else
                 {
                     Console.WriteLine("Placa de veículo já existente.");
+                    return false;
                 }
                 
             }
             else
             {
                 Console.WriteLine("Padrão de placa inválida. Digite uma placa de veículo válida (Ex: XYZ-1234).");
+                return false;
             }
         }
 
-        public void RemoverVeiculo()
+        public bool RemoverVeiculo(string placa)
         {
-            Console.WriteLine("Digite a placa do veículo para remover:");
-            string placa = Convert.ToString(Console.ReadLine().ToUpper());
-
             // Verifica se o veículo existe
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
             {
@@ -52,10 +51,12 @@ namespace DesafioFundamentos.Models
                 veiculos.Remove(placa);
 
                 Console.WriteLine($"O veículo {placa.ToUpper()} foi removido em {DateTime.Now} e o preço total foi de: {valorTotal.ToString("C")}");
+                return true;
             }
             else
             {
                 Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
+                return false;
             }
         }
 

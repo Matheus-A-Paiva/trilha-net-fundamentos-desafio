@@ -5,6 +5,9 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
+//pede o preço inicial
+//pede o preço por hora
+//loop com 4 opções 1 cadastrar veiculo 2 remover 3 listar e 4 encerrar
 
 decimal precoInicial = 0;
 decimal precoPorHora = 0;
@@ -35,11 +38,15 @@ while (exibirMenu)
     switch (Console.ReadLine())
     {
         case "1":
-            es.AdicionarVeiculo();
+            Console.WriteLine("Digite a placa do veículo para estacionar (Ex: XYZ-1234): ");
+            string veiculo = Convert.ToString(Console.ReadLine().ToUpper());
+            es.AdicionarVeiculo(veiculo);
             break;
 
         case "2":
-            es.RemoverVeiculo();
+            Console.WriteLine("Digite a placa do veículo para remover:");
+            string placa = Convert.ToString(Console.ReadLine().ToUpper());
+            es.RemoverVeiculo(placa);
             break;
 
         case "3":
